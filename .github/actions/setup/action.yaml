@@ -19,6 +19,8 @@ runs:
       shell: bash
       run: |
         uv venv
+        .venv/bin/python -m ensurepip --upgrade
+        .venv/bin/python -m pip install --upgrade pip
         source .venv/bin/activate
 
     - name: Install the project
