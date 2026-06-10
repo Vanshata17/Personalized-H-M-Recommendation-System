@@ -1,0 +1,36 @@
+name: 'ML Environment Setup'
+description: 'Sets up Python environment with uv and project dependencies'
+
+inputs:
+  uv-version:
+    description: 'Version of uv to install'
+    required: false
+    default: '0.4.30'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: ${{ inputs.uv-version }}
+
+    - name: Create and activate virtual environment
+      shell: bash
+      run: |
+        uv venv
+        source .venv/bin/activate
+
+    - name: Install the project
+      shell: bash
+      run: |
+        uv pip install --all-extras --requirement pyproject.toml
+
+    - name: Patch hsml for free-tier Hopsworks
+      shell: python
+      run: |
+        import hsml.core.serving_api as sa, inspect
+        src = inspect.getfile(sa)
+        patch = "\nServingApi.get_resource_limits = lambda self: None\nServingApi.get_num_instances_limits = lambda self: None\nServingApi.get_knative_domain = lambda self: None\n"
+        open(src, 'a').write(patch)
+        print("Patched", src)
