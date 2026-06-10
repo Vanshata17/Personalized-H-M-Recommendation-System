@@ -30,10 +30,11 @@ runs:
       shell: bash
       run: |
         source .venv/bin/activate
-        uv run python -c "
-import hsml.core.serving_api as sa, inspect
-src = inspect.getfile(sa)
-patch = '\nServingApi.get_resource_limits = lambda self: None\nServingApi.get_num_instances_limits = lambda self: None\nServingApi.get_knative_domain = lambda self: None\n'
-open(src, 'a').write(patch)
-print('Patched', src)
-"
+        uv run python << 'EOF'
+        import hsml.core.serving_api as sa
+        import inspect
+        src = inspect.getfile(sa)
+        patch = "\nServingApi.get_resource_limits = lambda self: None\nServingApi.get_num_instances_limits = lambda self: None\nServingApi.get_knative_domain = lambda self: None\n"
+        open(src, 'a').write(patch)
+        print("Patched", src)
+        EOF
