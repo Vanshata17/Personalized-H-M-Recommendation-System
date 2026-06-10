@@ -23,7 +23,8 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Run pipeline
-        run: uv run ipython notebooks/1_fp_computing_features.ipynb
+        shell: bash
+        run: source .venv/bin/activate && ipython notebooks/1_fp_computing_features.ipynb
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
           HOPSHOST: ${{ secrets.HOPSHOST }}
@@ -39,7 +40,8 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Run pipeline
-        run: uv run ipython notebooks/2_tp_training_retrieval_model.ipynb
+        shell: bash
+        run: source .venv/bin/activate && ipython notebooks/2_tp_training_retrieval_model.ipynb
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
           HOPSHOST: ${{ secrets.HOPSHOST }}
@@ -55,7 +57,8 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Run pipeline
-        run: uv run ipython notebooks/3_tp_training_ranking_model.ipynb
+        shell: bash
+        run: source .venv/bin/activate && ipython notebooks/3_tp_training_ranking_model.ipynb
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
           HOPSHOST: ${{ secrets.HOPSHOST }}
@@ -71,7 +74,8 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Run pipeline
-        run: uv run ipython notebooks/4_ip_computing_item_embeddings.ipynb
+        shell: bash
+        run: source .venv/bin/activate && ipython notebooks/4_ip_computing_item_embeddings.ipynb
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
           HOPSHOST: ${{ secrets.HOPSHOST }}
@@ -86,7 +90,8 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Run pipeline
-        run: uv run ipython notebooks/5_ip_creating_deployments.ipynb
+        shell: bash
+        run: source .venv/bin/activate && ipython notebooks/5_ip_creating_deployments.ipynb
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
           HOPSHOST: ${{ secrets.HOPSHOST }}
