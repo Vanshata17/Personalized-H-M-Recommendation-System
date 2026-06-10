@@ -15,15 +15,11 @@ runs:
       with:
         version: ${{ inputs.uv-version }}
 
-    - name: Create and activate virtual environment
+    - name: Create virtual environment and install dependencies
       shell: bash
       run: |
-        uv venv --seed
-        source .venv/bin/activate
-
-    - name: Install the project
-      shell: bash
-      run: |
+        uv venv
+        uv pip install pip
         uv pip install --all-extras --requirement pyproject.toml
 
     - name: Patch hsml for free-tier Hopsworks
