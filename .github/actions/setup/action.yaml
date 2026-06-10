@@ -20,7 +20,7 @@ runs:
       run: |
         uv venv
         uv pip install pip
-        uv pip install --all-extras --requirement pyproject.toml
+        uv pip install -e .
 
     - name: Patch hsml for free-tier Hopsworks
       shell: bash
