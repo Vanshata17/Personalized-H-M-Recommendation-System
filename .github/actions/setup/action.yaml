@@ -18,9 +18,7 @@ runs:
     - name: Create and activate virtual environment
       shell: bash
       run: |
-        uv venv
-        .venv/bin/python -m ensurepip --upgrade
-        .venv/bin/python -m pip install --upgrade pip
+        uv venv --seed
         source .venv/bin/activate
 
     - name: Install the project
