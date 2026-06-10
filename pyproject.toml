@@ -24,3 +24,6 @@ dependencies = [
     "ipython>=8.0.0",
     "jupyter>=1.0.0",
 ]
+
+[tool.setuptools]
+packages = ["recsys"]
