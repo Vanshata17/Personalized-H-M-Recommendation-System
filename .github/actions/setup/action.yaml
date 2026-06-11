@@ -25,7 +25,7 @@ runs:
     - name: Register Jupyter kernel
       shell: bash
       run: |
-        uv run python -m ipykernel install --user --name recsys-personalized --display-name "recsys-personalized"
+        uv run python -m ipykernel install --sys-prefix --name python3 --display-name "Python 3 (ipykernel)"
 
     - name: Patch hsml for free-tier Hopsworks
       shell: bash
