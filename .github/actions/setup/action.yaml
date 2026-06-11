@@ -20,17 +20,16 @@ runs:
       run: |
         uv venv
         uv pip install pip
-        uv pip install -e .
+        uv pip install --all-extras -e .
 
     - name: Register Jupyter kernel
       shell: bash
       run: |
-        uv run python -m ipykernel install --user --name recsys-personalized --display-name "Python (recsys - personalized)"
+        uv run python -m ipykernel install --user --name recsys-personalized --display-name "recsys-personalized"
 
     - name: Patch hsml for free-tier Hopsworks
       shell: bash
       run: |
-        source .venv/bin/activate
         uv run python << 'EOF'
         import hsml.core.serving_api as sa
         import inspect
