@@ -25,5 +25,5 @@ dependencies = [
     "jupyter>=1.0.0",
 ]
 
-[tool.setuptools]
-packages = ["recsys"]
+[tool.setuptools.packages.find]
+include = ["recsys*"]
